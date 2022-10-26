@@ -13,95 +13,46 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnClear.setOnClickListener {
+       btnClear.setOnClickListener {
             input.text = ""
-            res.text = ""
-            output.text = ""
-        }
-        btn0.setOnClickListener {
-            input.text = addToInputText("0")
-            res.text = addToInputText("0")
-
-
-        }
-        btn1.setOnClickListener {
-            input.text =addInputText("1")
-            res.text = addToInputText("1")
-
-        }
-        btn2.setOnClickListener {
-            input.text = addInputText("2")
-            res.text = addToInputText("2")
-
-        }
-        btn3.setOnClickListener {
-            input.text = addInputText("3")
-            res.text = addToInputText("3")
-        }
-        btn4.setOnClickListener {
-            input.text = addInputText("4")
-            res.text = addToInputText("4")
-        }
-        btn5.setOnClickListener {
-            input.text = addInputText("5")
-            res.text = addToInputText("5")
-        }
-        btn6.setOnClickListener {
-            input.text = addInputText("6")
-            res.text = addToInputText("6")
-        }
-        btn7.setOnClickListener {
-            input.text = addInputText("7")
-            res.text = addToInputText("7")
-        }
-        btn8.setOnClickListener {
-            input.text = addInputText("8")
-            res.text = addToInputText("8")
-        }
-        btn9.setOnClickListener {
-            input.text = addInputText("9")
-            res.text = addToInputText("9")
-        }
-        btnDot.setOnClickListener {
-            input.text = addToInputText(".")
-            res.text = addToInputText(".")
-        }
+            inputNumber.text = null
+           output.text = ""
+       }
         btnDivide.setOnClickListener {
+            input.text = addToInputText(inputNumber.text.toString())
             input.text = addToInputText("÷")
-            res.text = addToInputText("÷")
-            input.text = null
+            inputNumber.text = null
         }
         btnMultiply.setOnClickListener {
+            input.text = addToInputText(inputNumber.text.toString())
             input.text = addToInputText("×")
-            res.text = addToInputText("×")
-            input.text = null
+            inputNumber.text= null
         }
         btnSubstract.setOnClickListener {
+            input.text = addToInputText(inputNumber.text.toString())
             input.text = addToInputText("-")
-            res.text = addToInputText("-")
-            input.text = null
+            inputNumber.text= null
         }
         btnAdd.setOnClickListener {
+        input.text = addToInputText(inputNumber.text.toString())
             input.text = addToInputText("+")
-            res.text = addToInputText("+")
-            input.text = null
+            inputNumber.text = null
 
         }
 
         btnEqual.setOnClickListener {
+            input.text = addToInputText(inputNumber.text.toString())
+            inputNumber.text = null
             showResult()
         }
     }
 
     private fun addToInputText(buttonValue: String): String {
-        return "${res.text}$buttonValue"
-    }
-    private fun addInputText(buttonValue: String): String {
         return "${input.text}$buttonValue"
     }
 
     private fun getInputExpression(): String {
-        var expression = res.text.replace(Regex("÷"), "/")
+        var expression = input.text.replace(Regex("÷"), "/")
         expression = expression.replace(Regex("×"), "*")
         return expression
     }
@@ -127,7 +78,6 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("result", output.text.toString())
             startActivity(intent)
         }
-
 
     }
 }
